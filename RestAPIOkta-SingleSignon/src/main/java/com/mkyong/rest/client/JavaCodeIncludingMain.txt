@@ -35,7 +35,7 @@ public class NetClientPost {
 			request.addHeader("Content-Type", "application/json");
 			request.addHeader("Accept", "application/json");
 			request.addHeader("Authorization",
-					"SSWS 00_vn_4tORwWD-qApq43UAWvitqncSyQaIq5wp3aWd");
+					"Authorization Token Id");
 			httpClient.getParams().setParameter("http.protocol.content-charset", "UTF-8");
 			emailLength=email.length();
 			if(emailLength>100){System.out.println("Email Length is too long greater than 100 characters(should be <100 characters)");}
@@ -94,7 +94,7 @@ public class NetClientPost {
 			request.addHeader("Content-Type", "application/json");
 			request.addHeader("Accept", "application/json");
 			request.addHeader("Authorization",
-					"SSWS 00_vn_4tORwWD-qApq43UAWvitqncSyQaIq5wp3aWd");
+					"Authorization Token Id");
 			emailLength=email.length();
 			if(emailLength>100){System.out.println("Email Length is too long greater than 100 characters(should be <100 characters)");}
 			splitEmail = email.split("@");
@@ -141,7 +141,7 @@ public class NetClientPost {
 			request.addHeader("Content-Type", "application/json");
 			request.addHeader("Accept", "application/json");
 			request.addHeader("Authorization",
-					"SSWS 00_vn_4tORwWD-qApq43UAWvitqncSyQaIq5wp3aWd");
+					"Authorization Token Id");
 
 			HttpResponse response = httpClient.execute(request);
 			System.out.println("Response" + response.toString());
@@ -166,7 +166,7 @@ public class NetClientPost {
 			request.addHeader("Content-Type", "application/json");
 			request.addHeader("Accept", "application/json");
 			request.addHeader("Authorization",
-					"SSWS 00_vn_4tORwWD-qApq43UAWvitqncSyQaIq5wp3aWd");
+					"Authorization Token Id");
 
 			HttpResponse response = httpClient.execute(request);
 			System.out.println("Response" + response.toString());
@@ -204,7 +204,7 @@ public class NetClientPost {
 			request.addHeader("Content-Type", "application/json");
 			request.addHeader("Accept", "application/json");
 			request.addHeader("Authorization",
-					"SSWS 00_vn_4tORwWD-qApq43UAWvitqncSyQaIq5wp3aWd");
+					"Authorization Token Id");
 
 			HttpResponse response = httpClient.execute(request);
 			System.out.println("Response" + response.toString());
@@ -233,7 +233,7 @@ public class NetClientPost {
 			request.addHeader("Content-Type", "application/json");
 			request.addHeader("Accept", "application/json");
 			request.addHeader("Authorization",
-					"SSWS 00_vn_4tORwWD-qApq43UAWvitqncSyQaIq5wp3aWd");
+					"Authorization Token Id");
 
 			HttpResponse response = httpClient.execute(request);
 			System.out.println("Response" + response.toString());
@@ -262,7 +262,7 @@ public class NetClientPost {
 			request.addHeader("Content-Type", "application/json");
 			request.addHeader("Accept", "application/json");
 			request.addHeader("Authorization",
-					"SSWS 00_vn_4tORwWD-qApq43UAWvitqncSyQaIq5wp3aWd");
+					"Authorization Token Id");
 
 			StringEntity params = new StringEntity(
 					"{\"profile\": { \"name\": \""+groupName+"\", \"description\": \""+groupDescription+"\"}}");
@@ -304,7 +304,7 @@ public class NetClientPost {
 			request.addHeader("Content-Type", "application/json");
 			request.addHeader("Accept", "application/json");
 			request.addHeader("Authorization",
-					"SSWS 00_vn_4tORwWD-qApq43UAWvitqncSyQaIq5wp3aWd");
+					"Authorization Token Id");
 
 			HttpResponse response = httpClient.execute(request);
 			System.out.println("Response" + response.toString());
@@ -344,7 +344,7 @@ public class NetClientPost {
 			request.addHeader("Content-Type", "application/json");
 			request.addHeader("Accept", "application/json");
 			request.addHeader("Authorization",
-					"SSWS 00_vn_4tORwWD-qApq43UAWvitqncSyQaIq5wp3aWd");
+					"Authorization Token Id");
 
 			HttpResponse response = httpClient.execute(request);
 			System.out.println("Response" + response.toString());
@@ -383,7 +383,7 @@ public class NetClientPost {
 			request.addHeader("Content-Type", "application/json");
 			request.addHeader("Accept", "application/json");
 			request.addHeader("Authorization",
-					"SSWS 00_vn_4tORwWD-qApq43UAWvitqncSyQaIq5wp3aWd");
+					"Authorization Token Id");
 
 			HttpResponse response = httpClient.execute(request);
 			System.out.println("Response" + response.toString());
@@ -422,7 +422,7 @@ public class NetClientPost {
 			request.addHeader("Content-Type", "application/json");
 			request.addHeader("Accept", "application/json");
 			request.addHeader("Authorization",
-					"SSWS 00_vn_4tORwWD-qApq43UAWvitqncSyQaIq5wp3aWd");
+					"Authorization Token Id");
 
 			HttpResponse response = httpClient.execute(request);
 			System.out.println("Response" + response.toString());
@@ -458,7 +458,7 @@ public class NetClientPost {
 			request.addHeader("Content-Type", "application/json");
 			request.addHeader("Accept", "application/json");
 			request.addHeader("Authorization",
-					"SSWS 00_vn_4tORwWD-qApq43UAWvitqncSyQaIq5wp3aWd");
+					"Authorization Token Id");
 
 			HttpResponse response = httpClient.execute(request);
 			System.out.println("Response" + response.toString());
@@ -498,13 +498,13 @@ public class NetClientPost {
 		//addUser("?KPH34","?bcd34","a13sssddd3@24privetdrive.com","lkph345@hogwarts.edu","555-555-5555");//Korean/Chinese First name and last name.
 		
 		System.out.println("********Test case4 Success*******************");
-		//addUser("ÈKPH34","Äbcd34","a13sssddd33@24privetdrive.com","lkph3455@hogwarts.edu","555-555-5555");//French/German First name and last name.
+		//addUser("ï¿½KPH34","ï¿½bcd34","a13sssddd33@24privetdrive.com","lkph3455@hogwarts.edu","555-555-5555");//French/German First name and last name.
 		
 		System.out.println("********Test case5 Success 00u5l465nxDPLSAAJOEI*******************");
 		//addUser("dddKPH36810112","aaabcd38910121","?380222@4prietdve.com","?cd380222@hogarts.edu","555-555-5555");//Email and login special characters before @ Testing
 		
 		System.out.println("********Test case6 failed Put special characters after @ in email and login*******************");
-		//addUser("ÈKPH34","Äbcd34","a13sssddd33@24pÈvetdrive.com","lkph3455@hogwÈrts.edu","555-555-5555");//Email and Login special characters after @ Testing
+		//addUser("ï¿½KPH34","ï¿½bcd34","a13sssddd33@24pï¿½vetdrive.com","lkph3455@hogwï¿½rts.edu","555-555-5555");//Email and Login special characters after @ Testing
 	
 		
 		// Update Users have made 1 Test case so that functionality is as per requirements.
