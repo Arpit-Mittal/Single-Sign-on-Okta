@@ -1,0 +1,539 @@
+package main.java.com.mkyong.rest.client;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+public class NetClientPost {
+	
+	
+   /*
+    * Add User having attributes firstName,lastName,email,login,mobilePhone
+    */
+	public static void addUser(String firstName,String lastName,String email,String login,String mobilePhone) {
+		
+		int emailLength=0;
+		String[] splitLogin;
+		String[] splitEmail;
+		try {
+
+			HttpClient httpClient = new DefaultHttpClient();
+
+			HttpPost request = new HttpPost(
+					"https://bmcdev.okta-admin.com/api/v1/users?activate=false");
+			request.addHeader("Content-Type", "application/json");
+			request.addHeader("Accept", "application/json");
+			request.addHeader("Authorization",
+					"SSWS 00_vn_4tORwWD-qApq43UAWvitqncSyQaIq5wp3aWd");
+			httpClient.getParams().setParameter("http.protocol.content-charset", "UTF-8");
+			emailLength=email.length();
+			if(emailLength>100){System.out.println("Email Length is too long greater than 100 characters(should be <100 characters)");}
+			splitEmail = email.split("@");
+			splitLogin=login.split("@");
+			
+			
+			
+
+			StringEntity params = new StringEntity(
+					"{\"profile\": { \"firstName\":\""+URLEncoder.encode(firstName, "UTF-8")+"\", \"lastName\": \""+URLEncoder.encode(lastName, "UTF-8")+"\", \"email\": \""+URLEncoder.encode(splitEmail[0], "UTF-8")+"@"+URLEncoder.encode(splitEmail[1], "UTF-8")+"\",  \"login\": \""+URLEncoder.encode(splitLogin[0], "UTF-8")+"@"+URLEncoder.encode(splitLogin[1], "UTF-8")+"\", \"mobilePhone\": \""+mobilePhone+"\"}}");
+
+			request.setEntity(params);
+			HttpResponse response = httpClient.execute(request);
+			
+			
+			System.out.println("Response" + response.toString());
+
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+					(response.getEntity().getContent())));
+			
+			
+			
+			String output;
+			System.out.println("Output from Server .... \n");
+			while ((output = br.readLine()) != null) {
+				
+				System.out.println(URLDecoder.decode(output, "UTF-8"));
+			}
+
+		} catch (MalformedURLException e) {
+
+			e.printStackTrace();
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+		}
+	}
+
+	
+	/*
+	 * Update User Details using userid and can update firstName,lastName,email,login,mobilePhone
+	 */
+	public static void updateUser(String userId,String firstName,String lastName,String email,String login,String mobilePhone) {
+		
+		int emailLength=0;
+		String[] splitLogin;
+		String[] splitEmail;
+		try {
+
+			HttpClient httpClient = new DefaultHttpClient();
+
+			HttpPut request = new HttpPut(
+					"https://bmcdev.okta-admin.com/api/v1/users/"+userId);
+			request.addHeader("Content-Type", "application/json");
+			request.addHeader("Accept", "application/json");
+			request.addHeader("Authorization",
+					"SSWS 00_vn_4tORwWD-qApq43UAWvitqncSyQaIq5wp3aWd");
+			emailLength=email.length();
+			if(emailLength>100){System.out.println("Email Length is too long greater than 100 characters(should be <100 characters)");}
+			splitEmail = email.split("@");
+			splitLogin=login.split("@");
+			
+			StringEntity params = new StringEntity(
+					"{\"profile\": { \"firstName\":\""+URLEncoder.encode(firstName, "UTF-8")+"\", \"lastName\": \""+URLEncoder.encode(lastName, "UTF-8")+"\", \"email\": \""+URLEncoder.encode(splitEmail[0], "UTF-8")+"@"+URLEncoder.encode(splitEmail[1], "UTF-8")+"\",  \"login\": \""+URLEncoder.encode(splitLogin[0], "UTF-8")+"@"+URLEncoder.encode(splitLogin[1], "UTF-8")+"\", \"mobilePhone\": \""+mobilePhone+"\"}}");
+
+			request.setEntity(params);
+			HttpResponse response = httpClient.execute(request);
+			System.out.println("Response" + response.toString());
+
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+					(response.getEntity().getContent())));
+
+			String output;
+			System.out.println("Output from Server .... \n");
+			while ((output = br.readLine()) != null) {
+
+				System.out.println(URLDecoder.decode(output, "UTF-8"));
+			}
+
+		} catch (MalformedURLException e) {
+
+			e.printStackTrace();
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+		}
+	}
+	
+	/*
+	 * Delete User using Userid
+	 */
+
+	public static void deleteUser(String userId) {
+		try {
+
+			HttpClient httpClient = new DefaultHttpClient();
+
+			HttpDelete request = new HttpDelete(
+					"https://bmcdev.okta-admin.com/api/v1/users/"+userId);
+			request.addHeader("Content-Type", "application/json");
+			request.addHeader("Accept", "application/json");
+			request.addHeader("Authorization",
+					"SSWS 00_vn_4tORwWD-qApq43UAWvitqncSyQaIq5wp3aWd");
+
+			HttpResponse response = httpClient.execute(request);
+			System.out.println("Response" + response.toString());
+
+		} catch (MalformedURLException e) {
+
+			e.printStackTrace();
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+		}
+	}
+
+	public static void listGroups() {
+		try {
+
+			HttpClient httpClient = new DefaultHttpClient();
+
+			HttpGet request = new HttpGet(
+					"https://bmcdev.okta-admin.com/api/v1/users/00u5fui7qsCOOBXBXOIZ/groups");
+			request.addHeader("Content-Type", "application/json");
+			request.addHeader("Accept", "application/json");
+			request.addHeader("Authorization",
+					"SSWS 00_vn_4tORwWD-qApq43UAWvitqncSyQaIq5wp3aWd");
+
+			HttpResponse response = httpClient.execute(request);
+			System.out.println("Response" + response.toString());
+
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+					(response.getEntity().getContent())));
+
+			String output;
+			System.out.println("Output from Server .... \n");
+			while ((output = br.readLine()) != null) {
+
+				System.out.println(output);
+			}
+
+		} catch (MalformedURLException e) {
+
+			e.printStackTrace();
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+		}
+	}
+	/*
+	 * Remove User to Group using UserId and GroupId
+	 */
+
+	public static void removeUserToGroup(String userId,String groupId) {
+		try {
+
+			HttpClient httpClient = new DefaultHttpClient();
+
+			HttpDelete request = new HttpDelete(
+					"https://bmcdev.okta-admin.com/api/v1/groups/"+groupId+"/users/"+userId);
+			request.addHeader("Content-Type", "application/json");
+			request.addHeader("Accept", "application/json");
+			request.addHeader("Authorization",
+					"SSWS 00_vn_4tORwWD-qApq43UAWvitqncSyQaIq5wp3aWd");
+
+			HttpResponse response = httpClient.execute(request);
+			System.out.println("Response" + response.toString());
+
+		} catch (MalformedURLException e) {
+
+			e.printStackTrace();
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+		}
+	}
+	
+	/*
+	 * Add User to Group using UserId and GroupId
+	 */
+
+	public static void addUserToGroup(String userId,String groupId) {
+		try {
+
+			HttpClient httpClient = new DefaultHttpClient();
+
+			HttpPut request = new HttpPut(
+					"https://bmcdev.okta-admin.com/api/v1/groups/"+groupId+"/users/"+userId);
+			request.addHeader("Content-Type", "application/json");
+			request.addHeader("Accept", "application/json");
+			request.addHeader("Authorization",
+					"SSWS 00_vn_4tORwWD-qApq43UAWvitqncSyQaIq5wp3aWd");
+
+			HttpResponse response = httpClient.execute(request);
+			System.out.println("Response" + response.toString());
+
+		} catch (MalformedURLException e) {
+
+			e.printStackTrace();
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+		}
+	}
+	
+	/*
+	 * Create a Group with below groupName and groupDescription
+	 */
+
+	public static void createGroup(String groupName,String groupDescription) {
+		try {
+
+			HttpClient httpClient = new DefaultHttpClient();
+
+			HttpPost request = new HttpPost(
+					"https://bmcdev.okta-admin.com/api/v1/groups");
+			request.addHeader("Content-Type", "application/json");
+			request.addHeader("Accept", "application/json");
+			request.addHeader("Authorization",
+					"SSWS 00_vn_4tORwWD-qApq43UAWvitqncSyQaIq5wp3aWd");
+
+			StringEntity params = new StringEntity(
+					"{\"profile\": { \"name\": \""+groupName+"\", \"description\": \""+groupDescription+"\"}}");
+
+			request.setEntity(params);
+			HttpResponse response = httpClient.execute(request);
+			System.out.println("Response" + response.toString());
+
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+					(response.getEntity().getContent())));
+
+			String output;
+			System.out.println("Output from Server .... \n");
+			while ((output = br.readLine()) != null) {
+
+				System.out.println(output);
+			}
+
+		} catch (MalformedURLException e) {
+
+			e.printStackTrace();
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+		}
+	}
+
+	/*
+	 * Fetch all Users using groupid that belongs to that particular group
+	 */
+	public static void fetchUserToGroup(String groupId) {
+		try {
+
+			HttpClient httpClient = new DefaultHttpClient();
+
+			HttpGet request = new HttpGet(
+					"https://bmcdev.okta-admin.com/api/v1/groups/"+groupId+"/users");
+			request.addHeader("Content-Type", "application/json");
+			request.addHeader("Accept", "application/json");
+			request.addHeader("Authorization",
+					"SSWS 00_vn_4tORwWD-qApq43UAWvitqncSyQaIq5wp3aWd");
+
+			HttpResponse response = httpClient.execute(request);
+			System.out.println("Response" + response.toString());
+
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+					(response.getEntity().getContent())));
+
+			String output;
+			System.out.println("Output from Server .... \n");
+			while ((output = br.readLine()) != null) {
+
+				System.out.println(output);
+			}
+
+		} catch (MalformedURLException e) {
+
+			e.printStackTrace();
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+		}
+
+	}
+	
+	/*
+	 * List Apps corresponding to particular User using UserId
+	 */
+	public static void listAppLinks(String userid)
+	{
+		try {
+
+			HttpClient httpClient = new DefaultHttpClient();
+
+			HttpGet request = new HttpGet(
+					"https://bmcdev.okta-admin.com/api/v1/users/"+userid+"/appLinks");
+			request.addHeader("Content-Type", "application/json");
+			request.addHeader("Accept", "application/json");
+			request.addHeader("Authorization",
+					"SSWS 00_vn_4tORwWD-qApq43UAWvitqncSyQaIq5wp3aWd");
+
+			HttpResponse response = httpClient.execute(request);
+			System.out.println("Response" + response.toString());
+
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+					(response.getEntity().getContent())));
+
+			String output;
+			System.out.println("Output from Server .... \n");
+			while ((output = br.readLine()) != null) {
+
+				System.out.println(output);
+			}
+
+		} catch (MalformedURLException e) {
+
+			e.printStackTrace();
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+		}
+	}
+	
+	/*
+	 * Look up User using UserId
+	 */
+	public static void lookupUserId(String userId)
+	{
+		try {
+
+			HttpClient httpClient = new DefaultHttpClient();
+
+			HttpGet request = new HttpGet(
+					"https://bmcdev.okta-admin.com/api/v1/users/"+userId);
+			request.addHeader("Content-Type", "application/json");
+			request.addHeader("Accept", "application/json");
+			request.addHeader("Authorization",
+					"SSWS 00_vn_4tORwWD-qApq43UAWvitqncSyQaIq5wp3aWd");
+
+			HttpResponse response = httpClient.execute(request);
+			System.out.println("Response" + response.toString());
+
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+					(response.getEntity().getContent())));
+
+			String output;
+			System.out.println("Output from Server .... \n");
+			while ((output = br.readLine()) != null) {
+
+				System.out.println(output);
+			}
+
+		} catch (MalformedURLException e) {
+
+			e.printStackTrace();
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+		}
+	}
+	
+	/*
+	 * Look up user using Login Id
+	 */
+	public static void lookupUserLogin(String login)
+	{
+		try {
+
+			HttpClient httpClient = new DefaultHttpClient();
+
+			HttpGet request = new HttpGet(
+					"https://bmcdev.okta.com/api/v1/users/"+login);
+			request.addHeader("Content-Type", "application/json");
+			request.addHeader("Accept", "application/json");
+			request.addHeader("Authorization",
+					"SSWS 00_vn_4tORwWD-qApq43UAWvitqncSyQaIq5wp3aWd");
+
+			HttpResponse response = httpClient.execute(request);
+			System.out.println("Response" + response.toString());
+
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+					(response.getEntity().getContent())));
+
+			String output;
+			System.out.println("Output from Server .... \n");
+			while ((output = br.readLine()) != null) {
+
+				System.out.println(output);
+			}
+
+		} catch (MalformedURLException e) {
+
+			e.printStackTrace();
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+		}	
+	}
+	
+	public static void lookupUserLoginShortName()
+	{
+		try {
+
+			HttpClient httpClient = new DefaultHttpClient();
+
+			HttpGet request = new HttpGet(
+					"https://bmcdev.okta.com/api/v1/users/sasaaa");
+			request.addHeader("Content-Type", "application/json");
+			request.addHeader("Accept", "application/json");
+			request.addHeader("Authorization",
+					"SSWS 00_vn_4tORwWD-qApq43UAWvitqncSyQaIq5wp3aWd");
+
+			HttpResponse response = httpClient.execute(request);
+			System.out.println("Response" + response.toString());
+
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+					(response.getEntity().getContent())));
+
+			String output;
+			System.out.println("Output from Server .... \n");
+			while ((output = br.readLine()) != null) {
+
+				System.out.println(output);
+			}
+
+		} catch (MalformedURLException e) {
+
+			e.printStackTrace();
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+		}	
+	
+	}
+
+	public static void main(String[] args) {
+		
+		
+        // Adding Users have made 6 Test Cases so that functionality is as per requirements.
+		System.out.println("********Test case1 Success*******************");
+		//addUser("AKPH11","abcd11","a1sssddddddddddddddddddddddddddddggggggghhhhhhhhhhhhhhjffffffffhhhhhhhhhhhhhh@24privetdrive.com","lkp1h@hogwarts.edu","555-555-5555"); // Adding Users Working Fine Success
+		
+		System.out.println("********Test case2 Success*******************");
+		//addUser("AKPH3","abcd3","a13sssddddddddddddddddddddddddddddggggggghhhhhhhhhhhhhhjfffffffffffffhhhhhhhhhhhhhh@24privetdrive.com","lkph3@hogwarts.edu","555-555-5555"); //Adding email with more than 100 char
+		
+		System.out.println("********Test case3 Success*******************");
+		//addUser("?KPH34","?bcd34","a13sssddd3@24privetdrive.com","lkph345@hogwarts.edu","555-555-5555");//Korean/Chinese First name and last name.
+		
+		System.out.println("********Test case4 Success*******************");
+		//addUser("ÈKPH34","Äbcd34","a13sssddd33@24privetdrive.com","lkph3455@hogwarts.edu","555-555-5555");//French/German First name and last name.
+		
+		System.out.println("********Test case5 Success 00u5l465nxDPLSAAJOEI*******************");
+		//addUser("dddKPH36810112","aaabcd38910121","?380222@4prietdve.com","?cd380222@hogarts.edu","555-555-5555");//Email and login special characters before @ Testing
+		
+		System.out.println("********Test case6 failed Put special characters after @ in email and login*******************");
+		//addUser("ÈKPH34","Äbcd34","a13sssddd33@24pÈvetdrive.com","lkph3455@hogwÈrts.edu","555-555-5555");//Email and Login special characters after @ Testing
+	
+		
+		// Update Users have made 1 Test case so that functionality is as per requirements.
+		//updateUser("00u5l465nxDPLSAAJOEI","ddd?H36810112","aaa?d38910121","?380?2@4prietdve.com","?cd3?222@hogarts.edu","555-555-5555"); // Updating Users Working Fine
+		
+		
+		//updateUser("00u5l465nxDPLSAAJOEI","ddd?H36810112","aaa?d38910121","?380?gdchdcchcdjkcdklcklckcdnbc bcncncncncncncnmcmmcm,cm,lcm,cmcmcmcmmdcm,cncncncmncmcmmcmc.mc.mc.mcmmc2@4prietdve.com","?cd3?222@hogarts.edu","555-555-5555"); // Updating Users giving error email length too long
+		
+		
+		
+		// Delete User 1 Test Case
+		//deleteUser("00u5l465nxDPLSAAJOEI"); // Deleting Users Working Fine
+
+		 // add/remove a user to a group
+		//createGroup("Slytherin11","Cold and slimy11");// New Group id Working Fine
+        //addUserToGroup("00u5l7v7c6APVFPQFRVJ","00g5l8jmreCHIXZKVZVS");// Add User to that Group Id Working Fine
+		//removeUserToGroup("00u5l7v7c6APVFPQFRVJ","00g5l8jmreCHIXZKVZVS");// Remove user from that Group Id working Fine
+		//fetchUserToGroup("00g5l8jmreCHIXZKVZVS");// Fetch users that are member of that Group Id
+							// Working Fine
+
+		// assign/remove an app for a user Waiting for Reply from Tien as in API
+		// no description is found regarding this initiative.Have to wait for a month till API gets ready.
+		//listAppLinks("00u5l7v7c6APVFPQFRVJ");// List App links for a particular User Working Fine
+		
+		//looking up/search a user in Okta
+		//lookupUserId("00u5l7v7c6APVFPQFRVJ"); // Based upon id Look up a user Working fine.
+		//lookupUserLogin("lkp1h@hogwarts.edu");// Based upon Login Look up a User working fine.
+		//lookupUserLoginShortName();// Getting some issues while Running it Have to raise Support ticket regarding it otherwise API Documentation is wrong.
+
+	}
+
+}
