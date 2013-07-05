@@ -39,7 +39,7 @@ public class NetClientPost {
 			request.addHeader("Content-Type", "application/json");
 			request.addHeader("Accept", "application/json");
 			request.addHeader("Authorization",
-					"SSWS 00_vn_4tORwWD-qApq43UAWvitqncSyQaIq5wp3aWd");
+					"Authorization Token Id");
 			httpClient.getParams().setParameter(
 					"http.protocol.content-charset", "UTF-8");
 			emailLength = email.length();
@@ -107,7 +107,7 @@ public class NetClientPost {
 			request.addHeader("Content-Type", "application/json");
 			request.addHeader("Accept", "application/json");
 			request.addHeader("Authorization",
-					"SSWS 00_vn_4tORwWD-qApq43UAWvitqncSyQaIq5wp3aWd");
+					"Authorization Token Id");
 			emailLength = email.length();
 			if (emailLength > 100) {
 				System.out
@@ -167,7 +167,7 @@ public class NetClientPost {
 			request.addHeader("Content-Type", "application/json");
 			request.addHeader("Accept", "application/json");
 			request.addHeader("Authorization",
-					"SSWS 00_vn_4tORwWD-qApq43UAWvitqncSyQaIq5wp3aWd");
+					"Authorization Token Id");
 
 			HttpResponse response = httpClient.execute(request);
 			System.out.println("Response" + response.toString());
@@ -197,7 +197,7 @@ public class NetClientPost {
 			request.addHeader("Content-Type", "application/json");
 			request.addHeader("Accept", "application/json");
 			request.addHeader("Authorization",
-					"SSWS 00_vn_4tORwWD-qApq43UAWvitqncSyQaIq5wp3aWd");
+					"Authorization Token Id");
 
 			HttpResponse response = httpClient.execute(request);
 			System.out.println("Response" + response.toString());
@@ -227,7 +227,7 @@ public class NetClientPost {
 			request.addHeader("Content-Type", "application/json");
 			request.addHeader("Accept", "application/json");
 			request.addHeader("Authorization",
-					"SSWS 00_vn_4tORwWD-qApq43UAWvitqncSyQaIq5wp3aWd");
+					"Authorization Token Id");
 
 			HttpResponse response = httpClient.execute(request);
 			System.out.println("Response" + response.toString());
@@ -256,7 +256,7 @@ public class NetClientPost {
 			request.addHeader("Content-Type", "application/json");
 			request.addHeader("Accept", "application/json");
 			request.addHeader("Authorization",
-					"SSWS 00_vn_4tORwWD-qApq43UAWvitqncSyQaIq5wp3aWd");
+					"Authorization Token Id");
 
 			StringEntity params = new StringEntity(
 					"{\"profile\": { \"name\": \"" + groupName
@@ -301,7 +301,7 @@ public class NetClientPost {
 			request.addHeader("Content-Type", "application/json");
 			request.addHeader("Accept", "application/json");
 			request.addHeader("Authorization",
-					"SSWS 00_vn_4tORwWD-qApq43UAWvitqncSyQaIq5wp3aWd");
+					"Authorization Token Id");
 
 			HttpResponse response = httpClient.execute(request);
 			System.out.println("Response" + response.toString());
@@ -341,7 +341,7 @@ public class NetClientPost {
 			request.addHeader("Content-Type", "application/json");
 			request.addHeader("Accept", "application/json");
 			request.addHeader("Authorization",
-					"SSWS 00_vn_4tORwWD-qApq43UAWvitqncSyQaIq5wp3aWd");
+					"Authorization Token Id");
 
 			HttpResponse response = httpClient.execute(request);
 			System.out.println("Response" + response.toString());
@@ -379,7 +379,7 @@ public class NetClientPost {
 			request.addHeader("Content-Type", "application/json");
 			request.addHeader("Accept", "application/json");
 			request.addHeader("Authorization",
-					"SSWS 00_vn_4tORwWD-qApq43UAWvitqncSyQaIq5wp3aWd");
+					"Authorization Token Id");
 
 			HttpResponse response = httpClient.execute(request);
 			System.out.println("Response" + response.toString());
@@ -417,7 +417,7 @@ public class NetClientPost {
 			request.addHeader("Content-Type", "application/json");
 			request.addHeader("Accept", "application/json");
 			request.addHeader("Authorization",
-					"SSWS 00_vn_4tORwWD-qApq43UAWvitqncSyQaIq5wp3aWd");
+					"Authorization Token Id");
 
 			HttpResponse response = httpClient.execute(request);
 			System.out.println("Response" + response.toString());
